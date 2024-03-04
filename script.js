@@ -1,6 +1,4 @@
 let urlBase = 'https://pokeapi.co/api/v2/pokemon';
-// let api_key =  '605507acf87117e111e54a3ab5238541';
-// let api_key2 = '18c86db5f9c0c030b9df5f9e5b36c045';
 
 document.getElementById('botonBusqueda').addEventListener('click',() => {
 
@@ -9,14 +7,16 @@ document.getElementById('botonBusqueda').addEventListener('click',() => {
     if(pokemon) {
     fetchDatosPokemon(pokemon);
     }else{
-        alert("ingrese algoo!!")
+        alert("Ingrese un Pokemon!!")
     }
 })
 
 function fetchDatosPokemon(pokemon) {
     fetch(`${urlBase}/${pokemon}`)
     .then(data => data.json())
-    .then(data => mostrarDatos(data));
+    .then(data => mostrarDatos(data))
+    .catch(e => alert("Pokemon no existe o esta mal escrito."))
+    
 }
 
 function mostrarDatos(data) {
@@ -28,12 +28,8 @@ function mostrarDatos(data) {
     // Constantes traidas del fetch
     const pokemonNombre = data.forms[0].name;
     const pokemonImagen = data.sprites.front_default;
-    const pokemonHabilidades =data.abilities;
-
-    //const paisNombre = data.sys.country;
-    //const temperatura = data.main.temp;
-    //const descripcion = data.weather[0].description;
-    //const humedad = data.main.humidity;
+    const pokemonHabilidades = data.abilities;
+    const pokemonTipos = data.types;
     
 
     // Craer etiquetas y agregarlos al div = 'datosClima'
@@ -53,26 +49,24 @@ function mostrarDatos(data) {
         });
         return text;
     }
-    
-    //const temperaturaInfo = document.createElement('p');
-    //temperaturaInfo.textContent = `La temperatura es: ${Math.round(temperatura-273.15)} °C`
 
-    
+    const tiposInfo = document.createElement('p');
+    tiposInfo.textContent = " Pokemon tipo: "+tipos(pokemonTipos);
 
-    //const humedadInfo = document.createElement('p');
-    //humedadInfo.textContent = `La humedad es: ${humedad} %`;
+    function tipos(pokemonTipos) {
+        let text =" ";
+        pokemonTipos.forEach( tipo => {
+            text += `> ${tipo.type.name}   `
+        });
+        return text;
+    }
 
-    //const descripcionInfo = document.createElement('p');
-    //descripcionInfo.textContent = `La descripcion metereológica es: ${descripcion}`;
-    
+
 
     divDatosPokemon.appendChild(pokemonTitulo);
     divDatosPokemon.appendChild(imagenInfo);
     divDatosPokemon.appendChild(habilidadesInfo);
-    //divDatosPokemon.appendChild(temperaturaInfo);
-    //divDatosClima.appendChild(humedadInfo);
-    
-    //divDatosClima.appendChild(descripcionInfo);
+    divDatosPokemon.appendChild(tiposInfo);
 }
 
  

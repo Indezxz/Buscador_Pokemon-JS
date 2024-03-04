@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color:khaki;
+    background-color:#219ebc;
   }
   
   .contenedor {
@@ -8,8 +8,9 @@ body {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    background-color:powderblue;
+    background-color: #ffb703;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
   }
   
   h1 {
@@ -25,7 +26,7 @@ body {
   button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4CAF50;
+    background-color:#023047;
     color: #ffffff;
     border: none;
     cursor: pointer;
