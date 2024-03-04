@@ -22,7 +22,20 @@ function fetchDatosPokemon(pokemon) {
 function mostrarDatos(data) {
     console.log(data);
     // Seleccionar DIV y limpiarlo
-    const divDatosPokemon = document.gecd
+    const divDatosPokemon = document.getElementById("datosPokemon");
+    divDatosPokemon.innerHTML="";
+
+    // Constantes traidas del fetch
+    const pokemonNombre = data.forms[0].name;
+    const pokemonImagen = data.sprites.front_default;
+    const pokemonHabilidades =data.abilities;
+
+    //const paisNombre = data.sys.country;
+    //const temperatura = data.main.temp;
+    //const descripcion = data.weather[0].description;
+    //const humedad = data.main.humidity;
+    
+
     // Craer etiquetas y agregarlos al div = 'datosClima'
     const pokemonTitulo = document.createElement('h2');
     pokemonTitulo.textContent = `${pokemonNombre}`
